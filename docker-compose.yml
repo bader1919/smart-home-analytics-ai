@@ -13,14 +13,6 @@ services:
     environment:
       - OLLAMA_HOST=0.0.0.0
     restart: unless-stopped
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu]
-    # Remove GPU section if no NVIDIA GPU available
 
   # Ollama Model Initializer
   ollama-init:
