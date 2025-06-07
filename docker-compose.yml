@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # Ollama - Local AI Engine
   ollama:
