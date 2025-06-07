@@ -1,0 +1,47 @@
+# Home Assistant Configuration Example
+# Add this to your configuration.yaml file
+
+# Apache Kafka Integration
+apache_kafka:
+  ip_address: 192.168.1.100  # Replace with your Docker host IP
+  port: 9092
+  topic: homeassistant_events
+  
+  # Optional: Filter specific entities/domains
+  filter:
+    include_domains:
+      - sensor          # All sensors
+      - binary_sensor   # Motion, door sensors, etc.
+      - light          # All lights
+      - switch         # All switches
+      - climate        # Thermostats, HVAC
+      - device_tracker # Presence detection
+      
+    include_entity_globs:
+      - "sensor.*energy*"     # All energy sensors
+      - "sensor.*temperature*" # All temperature sensors
+      - "binary_sensor.*motion*" # All motion sensors
+      
+    exclude_entities:
+      - sensor.uptime         # Exclude noisy sensors
+      - sensor.last_boot
+      - sensor.cpu_temperature
+
+# Optional: MQTT for additional integrations
+mqtt:
+  broker: 192.168.1.100
+  port: 1883
+  discovery: true
+  discovery_prefix: homeassistant
+
+# Optional: InfluxDB for additional time-series storage
+influxdb:
+  host: 192.168.1.100
+  port: 8086
+  database: homeassistant
+  username: homeassistant
+  password: homeassistant
+  
+# Optional: Prometheus for metrics
+prometheus:
+  namespace: hass
